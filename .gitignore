@@ -1,0 +1,27 @@
+a)Use of SQLiteOpenHelper
+
+A helper class to manage database creation and version management.
+
+You create a subclass implementing onCreate(SQLiteDatabase), onUpgrade(SQLiteDatabase, int, int) and optionally onOpen(SQLiteDatabase), and this class takes care of opening the database if it exists, creating it if it does not, and upgrading it as necessary. Transactions are used to make sure the database is always in a sensible state.
+
+This class makes it easy for ContentProvider implementations to defer opening and upgrading the database until first use, to avoid blocking application startup with long-running database upgrades.
+
+The android.database.sqlite.SQLiteOpenHelper class is used for database creation and version management. For performing any database operation, you have to provide the implementation of onCreate() and onUpgrade() methods of SQLiteOpenHelper class.
+
+
+
+b) Use of OnUpgrade function
+
+Called when the database needs to be upgraded. The implementation should use this method to drop tables, add tables, or do anything else it needs to upgrade to the new schema version.
+
+onUpgrade is basically for handling new db changes(could be new columns addition,table addition) for any new version of your app. 
+
+Droping the table is not always necessary in onUpgrade it all depends on what your use case is. If the requirment is to not to persists the data from your older version of app then drop should help,but if its like changing schema then it should only have alter scripts.
+
+
+c)Using table layout with cursor 
+
+Showing data base information will be better suited with table layout. since table layout is not an adapter view, you can't use cursor adapter with it. So use table layout with cursor to show data base table information.
+
+
+ 
